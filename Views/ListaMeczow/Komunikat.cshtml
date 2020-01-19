@@ -1,0 +1,72 @@
+﻿@model Zawodnik
+
+@{
+    ViewData["Title"] = "Komunikat";
+    var msg = ViewBag.Msg;
+}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Komunikat</title>
+    <link rel="stylesheet" href="~/css/EditZawodnik.css" />
+</head>
+<body>
+    <div class="Container">
+
+        <!-- HEADER -->
+        <div class="Header">
+
+            <div>
+                <label>Witaj </label>
+                <label id="HelloUserLabel">Gosc</label>
+            </div>
+
+            <div>
+                <label>Komunikat</label>
+            </div>
+
+        </div>
+
+        <!-- MENU -->
+        <div class="Menu">
+            <div>
+                <a href="/Home/Index/"> Strona Główna</a>
+            </div>
+
+            <div>
+                <a href="/ListaZawodnikow/"> Lista Zawodników</a>
+            </div>
+
+            <div>
+                <a href="/ListaMeczow/"> Lista Meczów</a>
+            </div>
+
+            <div>
+                <a href="/DostepneMiejsca/"> Dostępne miejsca</a>
+            </div>
+
+            <div>
+                <a href="/Zarejestruj/"> Zarejestruj sie</a>
+            </div>
+            <div>
+                <a href="/ZarzadzajLudzmi/"> Zarządzaj Ludzmi</a>
+            </div>
+        </div>
+
+
+        <div class="Content">
+
+            <div>
+                <h3>Komunikat</h3> <br />
+                <label>Witaj mecz zostal  @msg</label>
+            </div>
+
+            <div>
+                <input type="button" value="Wróc" onclick="window.location.href = '/ListaMeczow/Index/';">
+            </div>
+
+        </div>
+
+        <div class="Footer">s18021</div>
+    </div>
+</body>

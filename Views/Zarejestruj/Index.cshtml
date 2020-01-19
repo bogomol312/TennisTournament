@@ -1,0 +1,157 @@
+﻿
+@model Zawodnik 
+
+@{
+    ViewData["Title"] = "Index";
+
+    var krajs = new List<Kraj>
+    {
+            new Kraj { Value = "MX", Text = "Mexico" },
+            new Kraj { Value = "CA", Text = "Canada" },
+            new Kraj { Value = "US", Text = "USA"  },
+            new Kraj { Value = "PL", Text = "Poland"  },
+            new Kraj { Value = "UA", Text = "Ukraine"  }
+    };
+
+    List<Zawodnik> treners = ViewBag.Treners;
+
+    var error = ViewBag.Error;
+}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Zarejestruj Page</title>
+    <link rel="stylesheet" href="~/css/EditZawodnik.css" />
+    <script src="~/js/nowyscript.js"></script>
+</head>
+<body>
+
+    <div class="Container">
+
+        <!-- HEADER -->
+        <div class="Header">
+
+            <div>
+                <label>Witaj </label>
+                <label id="HelloUserLabel">Gosc</label>
+            </div>
+
+            <div>
+                <label>Zarejestruj Sie</label>
+            </div>
+
+        </div>
+
+        <!-- MENU -->
+        <div class="Menu">
+            <div>
+                <a href="/Home/Index/"> Strona Główna</a>
+            </div>
+
+            <div>
+                <a href="/ListaZawodnikow/"> Lista Zawodników</a>
+            </div>
+
+            <div>
+                <a href="/ListaMeczow/"> Lista Meczów</a>
+            </div>
+
+            <div>
+                <a href="/DostepneMiejsca/"> Dostępne miejsca</a>
+            </div>
+
+            <div>
+                <a href="/Zarejestruj/"> Zarejestruj sie</a>
+            </div>
+            <div>
+                <a href="/ZarzadzajLudzmi/"> Zarządzaj Ludzmi</a>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="Content">
+
+            <div>
+                <h3>Zarejestruj sie</h3>
+            </div>
+
+            <form asp-action="Index" method="post" onsubmit="return ValidateFormZaw()">
+                <div class="Lista">
+                    <table>
+                        <tr>
+                            <td>Imie</td>
+                            <td><input asp-for="Imie" /></td>
+                            <td><span asp-validation-for="Imie" class="valid" id="ImieValidation">Imie musi byc wypelnione, oraz bez zadnych znakow specjalnych</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Nazwisko</td>
+                            <td><input asp-for="Nazwisko"></td>
+                            <td><span asp-validation-for="Nazwisko" class="valid" id="LastImieValidation">Nazwisko musi byc wypelnione, oraz bez zadnych znakow specjalnych</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Data Urodzenia</td>
+                            <td><input asp-for="DataUrodzenia"></td>
+                            <td><span asp-validation-for="DataUrodzenia" id="DataUrodzeniaValidation" class="valid"></span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Rola</td>
+                            <td>
+                                <select name="Rola" id="Rola" onclick="RoleChecker()">
+                                    <option value="Kibic">Kibic</option>
+                                    <option value="Sadz">Sadz</option>
+                                    <option value="Zawodnik">Zawodnik</option>
+                                </select>
+                            </td>
+                        </tr>
+
+
+                    </table>
+                </div>
+
+                <div class="zawodnikrole" id="divzawodnikrole">
+
+                    <table>
+                        <tr>
+                            <td>Kraj</td>
+                            <td>
+                                <select asp-for="Kraj" asp-items="@(new SelectList(krajs,"Value","Text"))">
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Plec</td>
+                            <td>
+                                <select asp-for="Plec">
+                                    <option value="M" selected="selected">Mezczyzna</option>
+                                    <option value="K">Kobieta</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Trener</td>
+                            <td>
+                                <select asp-for="Trener" asp-items="@(new SelectList(treners,"IdGosc","Nazwisko"))">
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+
+                <div id="knopo4ki" class="svernut">
+                    <span class="non-valid">@error</span><br />
+                    <input type="submit" value="submit" onclick="RoleChecker()" />
+                    <input type="reset" value="Wyczysc" />
+                    <input type="button" value="Wróc" onclick="window.location.href = '/Home/Index/';" />
+                </div>
+            </form>
+        </div>
+        <div class="Footer">s18021</div>
+    </div>
+
+</body>

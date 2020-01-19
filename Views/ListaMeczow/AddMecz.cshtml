@@ -1,0 +1,132 @@
+﻿@model Mecz
+
+@{
+    ViewData["Title"] = "AddMecz";
+
+    List<Zawodnik> zawodniki = ViewBag.Zawodniki;
+    List<Sedzia> judges = ViewBag.Sedzia;
+    var error = ViewBag.Error;
+}
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Dodaj Mecz</title>
+        <link rel="stylesheet" href="~/css/EditZawodnik.css" />
+      <script src="~/js/nowyscript.js"></script>                   
+    </head>
+<body>
+    <div class="Container">
+
+        <!-- HEADER -->
+        <div class="Header">
+
+            <div>
+                <label>Witaj </label>
+                <label id="HelloUserLabel">Gosc</label>
+            </div>
+
+            <div>
+                <label>Dodaj Mecz</label>
+            </div>
+
+        </div>
+
+        <!-- MENU -->
+        <div class="Menu">
+            <div>
+                <a href="/Home/Index/"> Strona Główna</a>
+            </div>
+
+            <div>
+                <a href="/ListaZawodnikow/"> Lista Zawodników</a>
+            </div>
+
+            <div>
+                <a href="/ListaMeczow/"> Lista Meczów</a>
+            </div>
+
+            <div>
+                <a href="/DostepneMiejsca/"> Dostępne miejsca</a>
+            </div>
+
+            <div>
+                <a href="/Zarejestruj/"> Zarejestruj sie</a>
+            </div>
+            <div>
+                <a href="/ZarzadzajLudzmi/"> Zarządzaj Ludzmi</a>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="Content">
+
+            <div>
+                <h3>Dodaj Mecz</h3>
+            </div>
+
+            <form asp-action="AddMecz" method="post" onsubmit="return ValidateFormMecz()">
+                <div>
+                    <table>
+
+                        <tr>
+                            <td>Data</td>
+                            <td><input asp-for="Data" placeholder="mm/dd/yyyy" id="DataUrodzenia"></td>
+                            <td><span asp-validation-for="Data" id="DataUrodzeniaValidation" class="valid">Prosze wprowadzic poprawna date(1-12,1-31,1940-2001)</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Zawodnik 1</td>
+                            <td>
+                                <select asp-for="Zawodnik1" asp-items="@(new SelectList(zawodniki,"IdGosc","Nazwisko"))" id="Player1Select">
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Wynik 1</td>
+                            <td><input asp-for="Wynik1" type="text" placeholder="123" id="Result1"></td>
+                            <td><span asp-validation-for="Wynik1" id="Result1Validation" class="valid">Wynik ma byc w postaci cyfr nie wiecej niz 3</span></td>
+                        </tr>
+
+                        <tr>
+
+                        <tr>
+                            <td>Zawodnik 2</td>
+                            <td>
+                                <select asp-for="Zawodnik2" asp-items="@(new SelectList(zawodniki,"IdGosc","Nazwisko"))" id="Player2Select">
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Wynik 2</td>
+                            <td><input asp-for="Wynik2" type="text" placeholder="123" id="Result2"></td>
+                            <td><span asp-validation-for="Wynik2" id="Result2Validation" class="valid">Wynik ma byc w postaci cyfr nie wiecej niz 3</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Sedzia</td>
+                            <td>
+                                <select id="Sedzia" asp-for="Sedzia" asp-items="@(new SelectList(judges,"IdSedzia","Nazwisko"))">
+                                    <option value="null">null</option>
+                                </select>
+                            </td>
+                            <td><span asp-validation-for="Sedzia" id="SedziaValidation" class="valid">Sedzia nie moze byc null</span></td>
+                        </tr>
+                    </table>
+                    <span id="PlayersValidation" class="valid">Nie mozna wybrac tych samych zawodnikow w 1 mecz</span>
+                    <span class="valid">@error</span>
+                </div>
+
+                <div>
+                    <input type="submit" value="Zatwierdz">
+                    <input type="reset" value="Wyczysc">
+                    <input type="button" value="Wróc" onclick="window.location.href = '/ListaMeczow/';">
+                </div>
+
+            </form>
+        </div>
+        <div class="Footer">s18021</div>
+    </div>
+</body>
+

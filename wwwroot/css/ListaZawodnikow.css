@@ -1,0 +1,55 @@
+
+body{
+    background-color: gray;
+}
+
+.Container{
+    display: grid;
+    grid-template-columns: 150px 150px 1fr;
+}
+
+.Header{
+    grid-column: 1 / 4;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border: 2px solid black;
+}
+
+.Header label{
+    font-size: 30px;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.Menu{
+   display: table;
+   grid-row: 2;
+}
+
+.Menu div{
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.Content{
+    grid-column: 2 / 4;
+    grid-row: 2;
+
+    display: table;
+    font-size: 20px;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+
+    border: 1px solid black;
+}
+
+.Content div label{
+    font-size: 30px;
+    text-align: center;
+    display: table-row;
+}
+
+
+.Footer{
+    border: 2px black solid;
+    grid-row-start: 4;
+    grid-column: 1 / 4;
+}

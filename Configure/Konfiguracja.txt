@@ -1,0 +1,60 @@
+Denys Lehonkov s18021 Technologie Internetowe 2019 Turniej Tenisowy .Net Core 2.2, MVC pattern
+
+Wstęp
+
+Wykorzystywane framework`i :
+- Microsoft.AspNetCore.App 2.2.0
+- Microsoft.AspNetCore.Razor.Design 2.2.0
+- Microsoft.NetCore.App	2.2.0
+- Microsoft.VisualStudio.Web.CodeGeneration.Design	 2.2.4
+
+Framework`i od początku powinni być zainstalowane w projekt, 
+jeżeli w jakimś przypadku tak nie jest proszę ich zainstalować
+poprzez : VisualStudio->TurniejTenisowy->Prawy przycisz->Manage NuGet Packages->Browse
+i zainstalować podane powyżej framework`i;
+
+Zaleca się korzystanie z przeglądarki Firefox
+
+Instrukcja uruchomenia
+
+1. Program działa wyłącznie na Microsoft SQL Server
+
+2.Uruchomić skrypt tworzący bazę danych BazaCreate.sql 
+
+3.Uruchomić skrypt tworzący niezbędne procedury do działania projektu Procedures.sql
+
+4.Otworzyć projekt za pomocą VisualStudio File->Open Projekt->TurniejTenisowy.sln
+
+5.Połaczyć się z bazą w środowisku Visual Studio 
+ 5.1 View->Server Explorer->Connect to Database
+ 5.2 W pole Server Name wpisujemu db-mssql.pjwstk.edu.pl
+ 5.3 W pole Select or enter a database name wpisujemy numer studenta(jak na FTP)
+
+6.Skopijować swój connection String w polu Properties.
+
+7. W klasie DataBase która znajduję się w folderze Controllers 
+	wkleić swój connection String do zmiennej constring 
+
+8. Po tych etapach można uruchamiać program i korzystać z niego.
+
+Instrukcja korzystania z programu
+
+1.Testowanie systemu rozrywek
+ 1.1. Dodajemy dwóch zawodników (Lista Zawodników->Dodaj Zawodnika)
+ 1.2. Dodajemy Sedziego (Zarejestruj się->Sedzia)
+ 1.3. Dodajemy nowy Mecz (Lista Meczów->Dodaj Mecz)
+
+2. Testowanie systemu rezerwacji miejsc
+ 2.1. Dodajemy Kibica (Zarejestruj sie->Kibic)
+ 2.2. Wchodzimy na strone Dostępne Miejsca
+ 2.3. Wybieramy Mecz przez kibica;
+ 
+3. Testowanie systemu recepcji
+ 3.1. System recepcji jest realizowany poprzez Strone Zarządzaj Ludzmi
+ 3.2. Dodanie nowych gości odbywa się poprzez menu Zarejestruj się
+ 
+
+
+
+
+

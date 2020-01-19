@@ -1,0 +1,102 @@
+﻿
+@model Zawodnik
+
+@{
+    ViewData["Title"] = "DeleteZawodnik";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Usun Zawodnika</title>
+    <link rel="stylesheet" href="~/css/EditZawodnik.css" />
+</head>
+<body>
+    <div class="Container">
+
+        <!-- HEADER -->
+        <div class="Header">
+
+            <div>
+                <label>Witaj </label>
+                <label id="HelloUserLabel">Gosc</label>
+            </div>
+
+            <div>
+                <label>Usun Zawodnika</label>
+            </div>
+
+        </div>
+
+        <!-- MENU -->
+        <div class="Menu">
+            <div>
+                <a href="/Home/Index/"> Strona Główna</a>
+            </div>
+
+            <div>
+                <a href="/ListaZawodnikow/"> Lista Zawodników</a>
+            </div>
+
+            <div>
+                <a href="/ListaMeczow/"> Lista Meczów</a>
+            </div>
+
+            <div>
+                <a href="/DostepneMiejsca/"> Dostępne miejsca</a>
+            </div>
+
+            <div>
+                <a href="/Zarejestruj/"> Zarejestruj sie</a>
+            </div>
+            <div>
+                <a href="/ZarzadzajLudzmi/"> Zarządzaj Ludzmi</a>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="Content">
+
+            <div>
+                <h3>Czy napewno chcesz Usunac zawodnika?</h3>
+            </div>
+
+            <div>
+
+                <table>
+
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Imie)</td>
+                        <td>@Html.DisplayFor(model => model.Imie)</td>
+                    </tr>
+
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Nazwisko)</td>
+                        <td>@Html.DisplayFor(model => model.Nazwisko)</td>
+                    </tr>
+
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Kraj)</td>
+                        <td>@Html.DisplayFor(model => model.Kraj)</td>
+                    </tr>
+
+                </table>
+
+
+                <form asp-action="DeleteZawodnik">
+                    <span> Czy checsz usunac wszystkie mecze tego zawodnika?</span>
+                    <br />
+                    <input name="pp" id="pp" type="checkbox" value="true">
+                    <br />
+                    <input type="hidden" asp-for="IdGosc" />
+                    <input type="submit" value="Zatwierdz">
+                    <input type="button" value="Wróc" onclick="window.location.href = '/ListaZawodnikow/';">
+                </form>
+            </div>
+
+
+
+        </div>
+        <div class="Footer">s18021</div>
+    </div>
+</body>
+

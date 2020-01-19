@@ -1,0 +1,95 @@
+﻿
+@model Mecz
+
+@{
+    ViewData["Title"] = "Add";
+    List<Zawodnik> gosci =  ViewBag.Gosci;
+    string error = ViewBag.Error;
+    List<Miejsce> miejsces = ViewBag.Miejsca;
+}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Zarezerwuj Miejsce</title>
+    <link rel="stylesheet" href="~/css/EditZawodnik.css" />
+</head>
+<body>
+    <div class="Container">
+
+        <!-- HEADER -->
+        <div class="Header">
+
+            <div>
+                <label>Witaj </label>
+                <label id="HelloUserLabel">Gosc</label>
+            </div>
+
+            <div>
+                <label>Komunikat</label>
+            </div>
+
+        </div>
+
+        <!-- MENU -->
+        <div class="Menu">
+            <div>
+                <a href="/Home/Index/"> Strona Główna</a>
+            </div>
+
+            <div>
+                <a href="/ListaZawodnikow/"> Lista Zawodników</a>
+            </div>
+
+            <div>
+                <a href="/ListaMeczow/"> Lista Meczów</a>
+            </div>
+
+            <div>
+                <a href="/DostepneMiejsca/"> Dostępne miejsca</a>
+            </div>
+
+            <div>
+                <a href="/Zarejestruj/"> Zarejestruj sie</a>
+            </div>
+            <div>
+                <a href="/ZarzadzajLudzmi/"> Zarządzaj Ludzmi</a>
+            </div>
+        </div>
+
+
+        <div class="Content">
+
+            <h3>Zarezerwuj Miejsce</h3>
+
+            <form method="post" asp-action="Add">
+                <div>
+                    <h3>Wybierz Goscia</h3>
+                    <select name="idgosc" asp-items="@(new SelectList(gosci,"IdGosc","Nazwisko"))"></select>
+                    <input style="visibility:hidden; height:0px;" asp-for="IdMecz" />
+                </div>
+
+                <div>
+                    @if (error.Length > 1)
+                    {
+                        <input type="submit" value="Wybrać" style="visibility:hidden">
+                        <span class="non-valid">@error</span>
+                        <br />
+                    }
+                    else
+                    {
+                        <h3>Wybierz Miejsce</h3>
+                        <select name="idMiejsce" asp-items="@(new SelectList(miejsces,"IdMiejsca","NumerMiejsca"))"></select>
+                        <br />
+                        <input type="submit" value="Wybrać" />
+                    }
+
+                    <input type="button" value="Wróc" onclick="window.location.href = '/DostepneMiejsca/';">
+                </div>
+            </form>
+
+        </div>
+
+        <div class="Footer">s18021</div>
+    </div>
+</body>
+

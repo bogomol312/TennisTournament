@@ -1,0 +1,115 @@
+﻿@model  MeczDetails
+
+@{
+    ViewData["Title"] = "Organise";
+    string error = ViewBag.Error;
+}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Organise</title>
+    <link rel="stylesheet" href="~/css/EditZawodnik.css" />
+</head>
+<body>
+    <div class="Container">
+
+        <!-- HEADER -->
+        <div class="Header">
+
+            <div>
+                <label>Witaj </label>
+                <label id="HelloUserLabel">Gosc</label>
+            </div>
+
+            <div>
+                <label>Komunikat</label>
+            </div>
+
+        </div>
+
+        <!-- MENU -->
+        <div class="Menu">
+            <div>
+                <a href="/Home/Index/"> Strona Główna</a>
+            </div>
+
+            <div>
+                <a href="/ListaZawodnikow/"> Lista Zawodników</a>
+            </div>
+
+            <div>
+                <a href="/ListaMeczow/"> Lista Meczów</a>
+            </div>
+
+            <div>
+                <a href="/DostepneMiejsca/"> Dostępne miejsca</a>
+            </div>
+
+            <div>
+                <a href="/Zarejestruj/"> Zarejestruj sie</a>
+            </div>
+            <div>
+                <a href="/ZarzadzajLudzmi/"> Zarządzaj Ludzmi</a>
+            </div>
+        </div>
+
+
+        <div class="Content">
+
+            <div>
+
+                <h3>Lista Gosci</h3>
+
+
+                @if (error.Length < 1)
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Imie
+                                </th>
+                                <th>
+                                    Nazwisko
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var gosc in Model.Kibice)
+                            {
+                                <tr>
+                                    <td>
+                                        @gosc.Imie
+                                    </td>
+                                    <td>
+                                        @gosc.Nazwisko
+                                    </td>
+                                    <td>
+                                        <form method="post" asp-action="Organise">
+                                            <input type="submit" value="Usun Goscia" />
+                                            <input style="visibility:hidden; height:0px;" name="IdMecz" asp-for="IdMecz" />
+                                            <input style="visibility:hidden; height:0px;" name="IdGosc" asp-for="@gosc.IdGosc" />
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <span class="non-valid">@error</span>
+                }
+            </div>
+
+            <div>
+                <input type="button" value="Wróc" onclick="window.location.href = '/DostepneMiejsca';">
+            </div>
+
+        </div>
+
+        <div class="Footer">s18021</div>
+    </div>
+</body>
+

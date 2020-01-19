@@ -1,0 +1,111 @@
+﻿
+@model List<Zawodnik>
+
+@{
+    ViewData["Title"] = "Kibice";
+}
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Zarzadzaj Kibice</title>
+    <link rel="stylesheet" href="~/css/ListaZawodnikow.css" />
+</head>
+<body>
+
+    <div class="Container">
+
+        <!-- HEADER -->
+        <div class="Header">
+
+            <div>
+                <label>Witaj </label>
+                <label id="HelloUserLabel">Gosc</label>
+            </div>
+
+            <div>
+                <label>Zaloguj Sie</label>
+            </div>
+
+
+        </div>
+
+        <!-- MENU -->
+        <div class="Menu">
+            <div>
+                <a href="/Home/Index/"> Strona Główna</a>
+            </div>
+
+            <div>
+                <a href="/ListaZawodnikow/"> Lista Zawodników</a>
+            </div>
+
+            <div>
+                <a href="/ListaMeczow/"> Lista Meczów</a>
+            </div>
+
+            <div>
+                <a href="/DostepneMiejsca/"> Dostępne miejsca</a>
+            </div>
+
+            <div>
+                <a href="/Zarejestruj/"> Zarejestruj sie</a>
+            </div>
+            <div>
+                <a href="/ZarzadzajLudzmi/"> Zarządzaj Ludzmi</a>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="Content">
+
+            <div>
+                <h3>Lista Kibiców</h3>
+            </div>
+
+            <div class="Lista">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model[0].Imie)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model[0].Nazwisko)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model[0].DataUrodzenia)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var s in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => s.Imie)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => s.Nazwisko)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => s.DataUrodzenia)
+                                </td>
+                                <td>
+                                    <a asp-action="EditKibic" asp-route-id="@s.IdGosc">Edit</a>
+                                    <a asp-action="DetailsKibic" asp-route-id="@s.IdGosc">Details</a>
+                                    <a asp-action="DeleteKibic" asp-route-id="@s.IdGosc">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="Footer">s18021</div>
+    </div>
+</body>
+
