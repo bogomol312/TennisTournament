@@ -26,7 +26,7 @@ namespace TurniejTenisowy.Controllers
 
         public IActionResult Kibice()//list
         {
-            return View(db.getGosciList());
+            return View(db.getKibicList());
         }
 
         [HttpGet]
@@ -43,7 +43,8 @@ namespace TurniejTenisowy.Controllers
             List<Sedzia> list = db.getSedziaList();
 
             foreach (Sedzia s in list)
-                if (s.Imie == edited.Imie && s.Nazwisko == edited.Nazwisko)
+               if(s.IdSedzia != edited.IdSedzia) //id 
+                if (s.Imie == edited.Imie && s.Nazwisko == edited.Nazwisko && s.DataUrodzenia==edited.DataUrodzenia )
                 {
                     ViewBag.Error = "Podany Sedzia juz istnieje";
                     return View(edited);
@@ -96,7 +97,7 @@ namespace TurniejTenisowy.Controllers
             List<Zawodnik> list = db.getGosciList();
 
             foreach (Zawodnik z in list)
-                if (z.Imie == edited.Imie && z.Nazwisko == edited.Nazwisko)
+                if (z.Imie == edited.Imie && z.Nazwisko == edited.Nazwisko && z.DataUrodzenia == edited.DataUrodzenia)
                 {
                     ViewBag.Error = "podany gosc juz istnieje";
                     return View(edited);

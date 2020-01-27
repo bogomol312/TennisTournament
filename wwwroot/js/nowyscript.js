@@ -160,7 +160,7 @@
         if (year <= 2017 || year > 2020) {
             text.className = "non-valid";
             inp.className = "non-validinp";
-            text.innerHTML = "Rok nie moze byc nizszy od 2018 oraz powyzej 2020";
+            text.innerHTML = "Rok nie moze byc nizszy od 2017 oraz powyzej 2020";
             return false;
         }
         else if (month < 1 || month > 12) {
@@ -215,7 +215,7 @@
     if(year <= 1940 || year > 2001){
       text.className="non-valid";//style.visibility = "visible";
       inp.className="non-validinp";//style.border = "2px red solid";
-      text.innerHTML = "Rok nie moze byc nizszy od 1940 oraz powyzej 2000";
+        text.innerHTML = "Rok nie musi byc powyzej od 1940 oraz nizszy 2000";
       return false;
     }
     else if( month < 1 || month > 12){
@@ -239,9 +239,6 @@
     return true;
  }
 
-    function TrenerValidation() {
-
-    }
 
     function ValidateFormMecz(event){
 

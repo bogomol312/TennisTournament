@@ -767,7 +767,7 @@ namespace TurniejTenisowy.Controllers
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("begin transaction; delete from kibic where IdKibic=@id; delete from gosc where IdGosc=@id; commit;", connection))
+                    using (SqlCommand command = new SqlCommand("begin transaction; delete from KibicNaMiejscu where IdKibic=@id; delete from kibic where IdKibic=@id; delete from gosc where IdGosc=@id; commit;", connection))
                     {
                         command.Parameters.AddWithValue("id", idSedzia);
 
@@ -905,7 +905,7 @@ namespace TurniejTenisowy.Controllers
             }
         }
 
-        internal bool deleteMiejsce(int idGosc, int idMecz)
+        internal bool deleteMiejsce(int idGosc, int idMecz,int numerMiejsca)
         {
             try
             {
@@ -913,10 +913,11 @@ namespace TurniejTenisowy.Controllers
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("delete from KibicNaMiejscu where IdKibic = @idkibic and IdMeczu = @idmecz", connection))
+                    using (SqlCommand command = new SqlCommand("delete from KibicNaMiejscu where IdKibic = @idkibic and IdMeczu = @idmecz and IdMiejsca = (select IdMiejsca from Miejsce where NumerMiejsca=@idmiejsce)", connection))
                     {
                         command.Parameters.AddWithValue("idkibic",idGosc);
                         command.Parameters.AddWithValue("idmecz", idMecz);
+                        command.Parameters.AddWithValue("idmiejsce", numerMiejsca);
 
                         int affectedRows = command.ExecuteNonQuery();
                         //  Console.WriteLine(affectedRows);
@@ -925,6 +926,44 @@ namespace TurniejTenisowy.Controllers
                 return true;
             }
             catch (SqlException) { return false; }
+        }
+
+        internal List<organiseDetails> getOrganiseDetailsList(int idMecz)
+        {
+            List<organiseDetails> lista = new List<organiseDetails>();
+
+            using (SqlConnection connection = new SqlConnection(constring))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("select	g.IdGosc,g.Imie,g.Nazwisko,knm.IdMeczu,m.NumerMiejsca from KibicNaMiejscu knm " +
+                                                           "inner join gosc g on knm.IdKibic=g.IdGosc "+
+                                                           "inner join Miejsce m on m.IdMiejsca=knm.IdMiejsca "+
+                                                           "where knm.IdMeczu=@IdMeczu", connection))
+                {
+                    command.Parameters.AddWithValue("IdMeczu", idMecz);
+
+                    try
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                lista.Add(new organiseDetails
+                                {
+                                    IdGosc = Convert.ToInt32(reader[0]),
+                                    Imie = reader[1].ToString(),
+                                    Nazwisko = reader[2].ToString(),
+                                    IdMeczu = Convert.ToInt32(reader[3]),
+                                    NumeMiejsca = Convert.ToInt32(reader[4])
+                                }) ;
+                            }
+                        }
+                    }
+                    catch (SqlException) { return null; }//exception
+                }
+                return lista;
+            }
         }
     }
 }

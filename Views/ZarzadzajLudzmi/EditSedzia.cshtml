@@ -8,7 +8,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Edytuj Zawodnika</title>
+    <title>Edytuj Sedziego</title>
     <link rel="stylesheet" href="~/css/EditZawodnik.css" />
     <script src="~/js/nowyscript.js"></script>
 </head>
@@ -24,7 +24,7 @@
             </div>
 
             <div>
-                <label>Edytuj Goscia</label>
+                <label>Edytuj Sedzia</label>
             </div>
 
         </div>
@@ -62,7 +62,7 @@
                 <h3>Edytuj Sedzia</h3>
             </div>
 
-            <form asp-action="EditKibic" method="post" onsubmit="return ValidateFormZaw()">
+            <form asp-action="EditSedzia" method="post" onsubmit="return ValidateFormZaw()">
                 <div>
                     <input style="visibility:hidden; height:0px;" asp-for="IdSedzia" /> <!-- TUTAJ IDGOSC-->
                     <table>

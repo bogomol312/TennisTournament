@@ -25,24 +25,21 @@ namespace TurniejTenisowy.Controllers
             if (db.getMeczById(id) == null) // nie istnieje
                 return NotFound();
 
-            MeczDetails details = new MeczDetails
-            {
-                IdMecz = Convert.ToInt32(id),
-                Kibice = db.getKibicList(id) //lista kibicow na tym meczu
-            };
+            List<organiseDetails> list = db.getOrganiseDetailsList(Convert.ToInt32(id));
 
-
-            if (details.Kibice.Count == 0)
+            if (list.Count == 0)
                 ViewBag.Error = "Nie ma jeszcze gosci na wybrany mecz";
             else ViewBag.Error = "";
 
-            return View(details);
+            return View(list);
         }
 
         [HttpPost]
-        public IActionResult Organise(int IdMecz,int IdGosc)//delete 
+        public IActionResult Organise(int IdMecz,int IdGosc,int NumerMiejsca)//delete 
         {
-            if (!db.deleteMiejsce(IdGosc, IdMecz)) //kasujemy
+
+
+            if (!db.deleteMiejsce(IdGosc, IdMecz, NumerMiejsca)) //kasujemy
                 Console.WriteLine("SQL Exception");
 
             return RedirectToAction("Organise", new { idMecz = IdMecz }); 
@@ -87,6 +84,5 @@ namespace TurniejTenisowy.Controllers
             ViewBag.Numer = numer;
             return View(db.getGoscById(idgosc));
         }
-
     }
 }

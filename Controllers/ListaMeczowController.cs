@@ -10,7 +10,6 @@ namespace TurniejTenisowy.Controllers
 {
     public class ListaMeczowController : Controller
     {
-        
         DataBase db = new DataBase();
 
         public IActionResult Index() //list()

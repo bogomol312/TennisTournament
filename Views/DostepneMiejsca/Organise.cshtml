@@ -1,4 +1,4 @@
-﻿@model  MeczDetails
+﻿@model  List<organiseDetails>
 
 @{
     ViewData["Title"] = "Organise";
@@ -72,27 +72,34 @@
                                 <th>
                                     Nazwisko
                                 </th>
+                                <th>
+                                    Numer miejsca
+                                </th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var gosc in Model.Kibice)
+                            @foreach (var gosc in Model)
                             {
-                                <tr>
-                                    <td>
-                                        @gosc.Imie
-                                    </td>
-                                    <td>
-                                        @gosc.Nazwisko
-                                    </td>
-                                    <td>
-                                        <form method="post" asp-action="Organise">
-                                            <input type="submit" value="Usun Goscia" />
-                                            <input style="visibility:hidden; height:0px;" name="IdMecz" asp-for="IdMecz" />
-                                            <input style="visibility:hidden; height:0px;" name="IdGosc" asp-for="@gosc.IdGosc" />
-                                        </form>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    @gosc.Imie
+                                </td>
+                                <td>
+                                    @gosc.Nazwisko
+                                </td>
+                                <td>
+                                    @gosc.NumeMiejsca
+                                </td>
+                                <td>
+                                    <form method="post" asp-action="Organise">
+                                        <input type="submit" value="Usun Goscia" />
+                                        <input style="visibility:hidden; height:0px;" name="IdMecz" asp-for="@gosc.IdMeczu" />
+                                        <input style="visibility:hidden; height:0px;" name="NumerMiejsca" asp-for="@gosc.NumeMiejsca" />
+                                        <input style="visibility:hidden; height:0px;" name="IdGosc" asp-for="@gosc.IdGosc" />
+                                    </form>
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>
